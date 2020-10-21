@@ -1,27 +1,28 @@
-# VineyardFrontend
+### VineyardFrontend
+
+This project was based on a course by "Get Arrays - Software Development Teaching Platform"
+https://www.udemy.com/course/building-a-restful-api-application-using-spring-and-angular/
+
+This was a great project. I did not add much, but it did require quite a bit of troubleshooting.
+
+#### Things I learned about:
+
+- Intro to Spring Security
+- Java Mail API for sending pre-formed automated e-mails based on a user action (ex. new user registration)
+- JWT (JSON Web Token) Authentication and Authorization with Java, SpringBoot + Angular
+- HttpInterceptors
+- Web Caching
+- Google Maps API
+- Angular Resolvers (https://codeburst.io/understanding-resolvers-in-angular-736e9db71267)
+- General web UX tips
+
+To view the live site deployment, please visit:
+
+To view the SpringBoot backend code please visit: https://github.com/kawgh1/spring-angular-photo-app-backend
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 10.1.4.
 
-## Development server
+#### Development server
 
 Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
 
-## Code scaffolding
-
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
-
-## Build
-
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
-
-## Running unit tests
-
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
-
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
