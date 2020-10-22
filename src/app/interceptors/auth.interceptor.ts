@@ -6,7 +6,7 @@ import {
     HttpRequest
 } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { AccountService } from '../service/account.service';
+import { AccountService } from '../services/account.service';
 
 // so with authentication interceptor, we're checking every user request to the backend server/API
 // and if it's a request that doesn't require the authentication token/header or it's a request

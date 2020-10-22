@@ -7,9 +7,9 @@ import { Observable } from 'rxjs';
 // used for authentication
 import { JwtHelperService } from '@auth0/angular-jwt';
 // the rest are classes we've created to handle the data and display
-import { User } from '../model/user';
-import { PasswordChange } from '../model/password-change';
-import { Post } from '../model/post';
+import { User } from '../models/user';
+import { PasswordChange } from '../models/password-change';
+import { Post } from '../models/post';
 import { ServerConstant } from '../constants/server-constant';
 
 

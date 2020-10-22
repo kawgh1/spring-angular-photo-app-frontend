@@ -1,4 +1,4 @@
-import { AlertType } from '../enum/alert-type.enum'
+import { AlertType } from '../enums/alert-type.enum'
 
 export class Alert {
     text: string;

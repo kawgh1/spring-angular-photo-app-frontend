@@ -1,9 +1,9 @@
 import { Injectable } from '@angular/core';
 import { CanActivate, ActivatedRouteSnapshot, RouterStateSnapshot, UrlTree, Router } from '@angular/router';
 import { Observable } from 'rxjs';
-import { AccountService } from '../service/account.service';
-import { AlertService } from '../service/alert.service';
-import { AlertType } from '../enum/alert-type.enum'
+import { AccountService } from '../services/account.service';
+import { AlertService } from '../services/alert.service';
+import { AlertType } from '../enums/alert-type.enum'
 
 // this class and stub were created by entering "ng g guard /guard/authentication" in the terminal 
 @Injectable({

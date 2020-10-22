@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Subject } from 'rxjs';
-import { Alert } from '../model/alert';
-import { AlertType } from '../enum/alert-type.enum';
+import { Alert } from '../models/alert';
+import { AlertType } from '../enums/alert-type.enum';
 
 // alert service is just a class that will handle sending the user
 // various alerts based on their actions in the app

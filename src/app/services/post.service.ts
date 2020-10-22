@@ -1,8 +1,8 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { Post } from '../model/post';
-import { Comment } from '../model/comment';
+import { Post } from '../models/post';
+import { Comment } from '../models/comment';
 import { ServerConstant } from '../constants/server-constant';
 
 @Injectable({

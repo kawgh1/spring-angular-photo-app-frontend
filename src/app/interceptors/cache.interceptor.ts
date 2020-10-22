@@ -8,7 +8,7 @@ import {
 } from '@angular/common/http';
 import { Observable, of } from 'rxjs';
 import { tap } from 'rxjs/operators';
-import { CacheService } from '../service/cache.service';
+import { CacheService } from '../services/cache.service';
 import { ServerConstant } from '../constants/server-constant';
 
 // So if there is any POST request or PUT request or DELETE request, that will change the data 
