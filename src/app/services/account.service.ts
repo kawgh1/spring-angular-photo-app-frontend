@@ -35,8 +35,8 @@ export class AccountService {
   // and they try to access a protected resource from the backend, this will send them to
   //  to re-login/ re-authenticate and after that redirectURL will take them back to the resource
   // or page they were initially trying to access
-  public redirectURL: string;
-  public googleMapsAPIKey = 'Your Google Maps API key';
+  public redirectUrl: string;
+  public googleMapsAPIKey = 'AIzaSyDHu97d-s241E2ya38ye2t0ym8kbRqgqRM';
   public googleMapsAPIUrl = 'https://maps.googleapis.com/maps/api/geocode/json?latlng=';
   public jwtHelper = new JwtHelperService();
 
@@ -132,7 +132,7 @@ export class AccountService {
     return this.http.post(`${this.host}/user/changePassword`, changePassword, { responseType: 'text' });
   }
 
-  uploadeUserProfilePicture(profilePicture: File) {
+  uploadUserProfilePicture(profilePicture: File) {
     // we're just appending the user image to a html form object handled through javascript
 
     const fd = new FormData();

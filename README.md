@@ -4,10 +4,11 @@ This project was based on a course by "Get Arrays - Software Development Teachin
 https://www.udemy.com/course/building-a-restful-api-application-using-spring-and-angular/
 
 This was a great project. I did not add much, but it did require quite a bit of troubleshooting.
+I did add some mobile formatting, UX improvements and some code fixes.
 
 #### Things I learned about:
 
-- Intro to Spring Security
+- Spring Security
 - Java Mail API for sending pre-formed automated e-mails based on a user action (ex. new user registration)
 - JWT (JSON Web Token) Authentication and Authorization with Java, SpringBoot + Angular
 - HttpInterceptors

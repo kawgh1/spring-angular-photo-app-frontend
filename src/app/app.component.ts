@@ -1,8 +1,8 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs';
-import { Alert } from './model/alert';
-import { AlertService } from './service/alert.service';
-import { LoadingService } from './service/loading.service';
+import { Alert } from './models/alert';
+import { AlertService } from './services/alert.service';
+import { LoadingService } from './services/loading.service';
 
 @Component({
   selector: 'app-root',
@@ -45,7 +45,7 @@ export class AppComponent implements OnInit, OnDestroy {
         this.alerts.push(alert);
         // when we subscribe to the alert service its going to display the alert and we want
         // that to close automatically if user doesn't close alert
-        this.closeAlert(3);
+        this.closeAlert(5);
       })
     );
 
@@ -53,10 +53,10 @@ export class AppComponent implements OnInit, OnDestroy {
 
   // close alert automatically after X seconds if user doesn't close alert
   // private because its only being used in this class
-  private closeAlert(second: number): void {
+  public closeAlert(second: number): void {
     setTimeout(() => {
 
-      const element: HTMLElement = document.getElementById('dismissAlert') as HTMLElement;
+      let element: HTMLElement = document.getElementById('dismissAlert') as HTMLElement;
       element.click();
     }, second * 1000)
   }

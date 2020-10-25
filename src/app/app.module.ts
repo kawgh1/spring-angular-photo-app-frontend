@@ -1,7 +1,10 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { HTTP_INTERCEPTORS } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { Routes, RouterModule } from '@angular/router';
+
+// forms
+import { FormsModule } from '@angular/forms';
 
 // components
 import { AppComponent } from './app.component';
@@ -30,6 +33,8 @@ import { CacheInterceptor } from './interceptors/cache.interceptor';
 // third party modules
 // loader display
 import { NgxLoadingModule } from 'ngx-loading';
+import { CommonModule } from '@angular/common';
+
 
 
 // routes
@@ -37,21 +42,22 @@ import { NgxLoadingModule } from 'ngx-loading';
 const appRoutes: Routes = [
 
   // login, signup and reset password do not require authentication
-  { path: 'components/login', component: LoginComponent },
-  { path: 'components/signup', component: SignupComponent },
-  { path: 'components/reset-password', component: ResetPasswordComponent },
-  { path: '', redirectTo: '/components/home', pathMatch: 'full' },
+  { path: 'login', component: LoginComponent },
+  { path: 'signup', component: SignupComponent },
+  { path: 'reset-password', component: ResetPasswordComponent },
+
   // main home login page does require authentication -> AuthenticationGuard
   // AuthenticationGuard will route non-loggedIn users back to homepage/login
   // they are called protected routes
-  { path: 'components/home', component: HomeComponent, canActivate: [AuthenticationGuard] },
+  { path: 'home', component: HomeComponent, canActivate: [AuthenticationGuard] },
   // PostResolver + AuthenticationGuard
   {
-    path: 'components/post/:postId', component: PostDetailComponent,
+    path: 'post/:postId', component: PostDetailComponent,
     resolve: { resolvedPost: PostresolverService }, canActivate: [AuthenticationGuard]
   },
   // AuthenticationGuard
-  { path: 'components/profile/:username', component: ProfileComponent, canActivate: [AuthenticationGuard] }
+  { path: 'profile/:username', component: ProfileComponent, canActivate: [AuthenticationGuard] },
+  { path: '', redirectTo: 'home', pathMatch: 'full' }
 ];
 
 @NgModule({
@@ -67,6 +73,11 @@ const appRoutes: Routes = [
   ],
   imports: [
     BrowserModule,
+    // added Angular Forms module for ngForms in HTML pages
+    FormsModule,
+    // add Angular HttpClientModule - Angular's mechanism for communicating with remote servers over HTTP
+    HttpClientModule,
+    CommonModule,
     // import routes at the root level so Angular app is aware of the routes at root level
     RouterModule.forRoot(appRoutes),
     // import loader from third party module

@@ -50,7 +50,7 @@ export class AuthenticationGuard implements CanActivate {
       // they were trying to access (if they have authorization, 
       // otherwise display new alert message "Not authorized", etc.)
 
-      this.accountService.redirectURL = url;
+      this.accountService.redirectUrl = url;
       this.router.navigate(['/login']);
       this.alertService.showAlert('You must be logged in to access this page!', AlertType.DANGER);
       return false;
