@@ -1,9 +1,9 @@
 export class ServerConstant {
 
     // DEV ENV variables
-    public host = 'http://localhost:8080';
+    public host = 'https://spring-angular-photo-share-app.herokuapp.com';
 
-    public client = 'http://localhost:4200';
+    public client = 'https://spring-angular-photoshar-front.herokuapp.com';
 
     public userPicture = `${this.host}/images/users`;
 

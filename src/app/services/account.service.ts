@@ -36,7 +36,7 @@ export class AccountService {
   //  to re-login/ re-authenticate and after that redirectURL will take them back to the resource
   // or page they were initially trying to access
   public redirectUrl: string;
-  public googleMapsAPIKey = 'AIzaSyDHu97d-s241E2ya38ye2t0ym8kbRqgqRM';
+  public googleMapsAPIKey = '${GoogleMapsAPIKey}';
   public googleMapsAPIUrl = 'https://maps.googleapis.com/maps/api/geocode/json?latlng=';
   public jwtHelper = new JwtHelperService();
 

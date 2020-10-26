@@ -21,6 +21,15 @@ To view the live site deployment, please visit:
 
 To view the SpringBoot backend code please visit: https://github.com/kawgh1/spring-angular-photo-app-backend
 
+
+#### Notes
+
+This project is a photo sharing application and stores the user uploaded photos directly on the main Backend Server. 
+In a real-world environment this is not ideal and would cause major slow down with user growth. The Server set up
+is strictly for learning and demonstration purposes.
+
+
+
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 10.1.4.
 
 #### Development server
