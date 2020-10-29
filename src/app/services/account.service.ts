@@ -11,6 +11,8 @@ import { User } from '../models/user';
 import { PasswordChange } from '../models/password-change';
 import { Post } from '../models/post';
 import { ServerConstant } from '../constants/server-constant';
+// import GoogleMapsAPIKey from environment.ts
+import { environment } from '../../environments/environment'
 
 
 
@@ -36,7 +38,8 @@ export class AccountService {
   //  to re-login/ re-authenticate and after that redirectURL will take them back to the resource
   // or page they were initially trying to access
   public redirectUrl: string;
-  public googleMapsAPIKey = '${GoogleMapsAPIKey}';
+  // public googleMapsAPIKey = '${GoogleMapsAPIKey}';
+  public GoogleMapsAPIKey = environment.GoogleMapsAPIKey;
   public googleMapsAPIUrl = 'https://maps.googleapis.com/maps/api/geocode/json?latlng=';
   public jwtHelper = new JwtHelperService();
 
@@ -121,7 +124,7 @@ export class AccountService {
 
   // call to Google Maps API send long + lat as string and get back location JSON object with info
   getLocation(latitude: string, longitude: string): Observable<any> {
-    return this.http.get<any>(`${this.googleMapsAPIUrl}` + `${latitude},${longitude}&key=${this.googleMapsAPIKey}`);
+    return this.http.get<any>(`${this.googleMapsAPIUrl}` + `${latitude},${longitude}&key=${this.GoogleMapsAPIKey}`);
   }
 
   updateUser(updateUser: User): Observable<User> {

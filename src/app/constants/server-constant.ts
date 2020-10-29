@@ -1,6 +1,7 @@
 export class ServerConstant {
 
-    // DEV ENV variables
+    // PRODUCTION ENV variables
+
     public host = 'https://spring-angular-photo-share-app.herokuapp.com';
 
     public s3imagehost = 'https://vineyard-photos.s3.us-east-2.amazonaws.com';
@@ -10,4 +11,15 @@ export class ServerConstant {
     public userPicture = `${this.s3imagehost}/images/users`;
 
     public postPicture = `${this.s3imagehost}/images/posts`;
+
+
+    // DEV ENV variables
+
+    // public host = 'localhost:8080';
+
+    // public client = 'localhost:4200';
+
+    // public userPicture = `${this.host}/images/users`;
+
+    // public postPicture = `${this.host}/images/posts`;
 }
