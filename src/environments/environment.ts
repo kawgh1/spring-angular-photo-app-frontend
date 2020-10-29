@@ -5,12 +5,13 @@
 export const environment = {
   production: true,
 
-  GoogleMapsAPIKey: 'AIzaSyDHu97d-s241E2ya38ye2t0ym8kbRqgqRM',
-
 
 };
 
+export const GoogleMapsAPIKey = {
 
+  string: 'AIzaSyDHu97d-s241E2ya38ye2t0ym8kbRqgqRM',
+}
 
 
 
