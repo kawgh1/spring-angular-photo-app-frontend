@@ -15,9 +15,9 @@ export class ServerConstant {
 
     // DEV ENV variables
 
-    // public host = 'localhost:8080';
+    // public host = 'http://localhost:8080';
 
-    // public client = 'localhost:4200';
+    // public client = 'http://localhost:4200';
 
     // public userPicture = `${this.host}/images/users`;
 
