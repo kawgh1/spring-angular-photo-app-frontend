@@ -12,7 +12,7 @@ import { PasswordChange } from '../models/password-change';
 import { Post } from '../models/post';
 import { ServerConstant } from '../constants/server-constant';
 // import GoogleMapsAPIKey from environment.ts
-import { GoogleMapsAPIKey } from '../../environments/environment';
+import { APIKeys } from '../../environments/environment';
 
 
 
@@ -39,7 +39,7 @@ export class AccountService {
   // or page they were initially trying to access
   public redirectUrl: string;
   // public googleMapsAPIKey = '${GoogleMapsAPIKey}';
-  public googleMapsAPIKey = GoogleMapsAPIKey;
+  public googleMapsAPIKey = APIKeys.GoogleMapsAPIKey;
 
   public googleMapsAPIUrl = 'https://maps.googleapis.com/maps/api/geocode/json?latlng=';
   public jwtHelper = new JwtHelperService();
