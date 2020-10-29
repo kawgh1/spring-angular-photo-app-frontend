@@ -12,7 +12,7 @@ import { PasswordChange } from '../models/password-change';
 import { Post } from '../models/post';
 import { ServerConstant } from '../constants/server-constant';
 // import GoogleMapsAPIKey from environment.ts
-import { environment, APIKeys } from '../../environments/environment';
+import { APIKeys } from '../../environments/environment.prod';
 
 
 
