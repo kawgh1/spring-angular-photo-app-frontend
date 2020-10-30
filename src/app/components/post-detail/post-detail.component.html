@@ -16,12 +16,10 @@
                             </div>
                             <div (click)="getUserProfile(post.username)" style="cursor: pointer" class="ml-2">
                                 <div style="color:#18BC9C;cursor:pointer;" class="h5 m-0">{{ post?.username }}</div>
-                                <div class="h7">
+                                <div class="h7 text-muted">
                                     {{ post?.location }}
                                     <br>
-                                    {{ post?.postedDate | date: "mediumDate" }} &nbsp;
-                                    <br>
-                                    {{ post?.postedDate | date: "shortTime" }}
+                                    {{ post?.postedDate | date: "mediumDate" }}
 
 
                                 </div>
@@ -64,7 +62,7 @@
                                         style="color:#18BC9C;cursor:pointer;"><strong>{{
                       comment.username }}</strong></a>
                                     <span class="text-secondary float-right">
-                                        {{ comment?.postedDate | date: "short" }}
+                                        {{ comment?.postedDate | date: "mediumDate" }}
                                     </span>
                                 </p>
                                 <div class="clearfix"></div>
