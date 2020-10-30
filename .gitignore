@@ -11,7 +11,7 @@
 /node_modules
 
 #API Keys
-#environment.prod.ts
+environment.prod.ts
 
 # profiling files
 chrome-profiler-events*.json
