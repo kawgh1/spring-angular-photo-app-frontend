@@ -17,7 +17,7 @@
                             </div>
                             <div (click)="getUserProfile(post.username)" style="cursor: pointer" class="ml-2">
                                 <div style="color:#18BC9C;cursor:pointer;" class="h5 m-0">{{ post.username }}</div>
-                                <div class="h7 text-muted">
+                                <div class="h7">
                                     {{ post?.location }}
                                     <br>
                                     {{ post?.postedDate | date: "mediumDate" }} &nbsp;
