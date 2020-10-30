@@ -16,12 +16,17 @@
                                     alt="" />
                             </div>
                             <div (click)="getUserProfile(post.username)" style="cursor: pointer" class="ml-2">
-                                <div class="h5 m-0">{{ post.username }}</div>
+                                <div style="color:#18BC9C;cursor:pointer;" class="h5 m-0">{{ post.username }}</div>
                                 <div class="h7 text-muted">
-                                    {{ post.postedDate | date: "mediumDate" }}
-                                    {{ post.location }}
+                                    {{ post?.location }}
+                                    <br>
+                                    {{ post?.postedDate | date: "mediumDate" }} &nbsp;
+
+                                    {{ post?.postedDate | date: "shortTime" }}
                                 </div>
+                                <p class="card-text">{{ post.caption }}</p>
                             </div>
+
                         </div>
                         <div>
                             <div *ngIf="user.username == post.username" class="dropdown">
@@ -34,17 +39,73 @@
                                 </div>
                             </div>
                         </div>
+
                     </div>
                 </div>
                 <img (click)="seeOnePost(post.id)" style="cursor:pointer;" class="card-img-top"
                     src="{{ postHost }}/{{ post?.name }}.png" alt="Card image cap" />
-                <div class="card-body">
-                    <h5 style="color:#18BC9C;cursor:pointer;" (click)="getUserProfile(post.username)"
+
+                <!-- <h5 style="color:#18BC9C;cursor:pointer;" (click)="getUserProfile(post.username)"
                         class="card-title">
                         {{ post.username }}
-                    </h5>
-                    <p class="card-text">{{ post.caption }}</p>
+                    </h5> -->
+
+                <!-- comments and likes go here -->
+                <div class="card-body">
+                    <a class="card-link" style="cursor:pointer;">{{ post?.likes }}<i class="fa fa-gittip"></i></a>
+                    <a data-toggle="collapse" href="#{{ post.name }}" role="button" aria-expanded="false"
+                        aria-controls="collapseComment" class="card-link float-right">{{ post?.commentList?.length }}<i
+                            class="fa fa-comment"></i></a>
+                    <!-- <h5 style="color:#18BC9C;cursor:pointer;" (click)="getUserProfile(post.username)"
+                            class="card-title">
+                            {{ post?.username }}
+                        </h5> -->
+
                 </div>
+
+                <div class="collapse" id="{{ post.name }}">
+                    <div *ngFor="let comment of post?.commentList" class="card-body">
+                        <div class="row">
+                            <div class="col-md-12" style="padding: -50px 0px;">
+                                <p>
+                                    <a class="float-left" (click)="getUserProfile(comment.username)"
+                                        style="color:#18BC9C;cursor:pointer;"><strong>{{
+                          comment.username }}</strong></a>
+                                    <span class="text-secondary float-right">
+                                        {{ comment?.postedDate | date: "short" }}
+                                    </span>
+                                </p>
+                                <div class="clearfix"></div>
+                                <p>{{ comment?.content }}</p>
+                            </div>
+                        </div>
+                    </div>
+                    <hr />
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <p><a class="float-left" href="#"></a></p>
+                                <div class="clearfix"></div>
+                                <form #commentForm="ngForm" (ngSubmit)="onAddComment(commentForm, post)">
+                                    <input type="hidden" name="username" ngModel="{{ user?.username }}" />
+                                    <input type="hidden" name="postId" ngModel="{{ post?.id }}" />
+                                    <p>
+                                        <input type="text" name="content" [(ngModel)]="comment.content"
+                                            class="form-control" id="comment" />
+                                    </p>
+
+                                    <button [disabled]="comment.content == ''" type="submit"
+                                        class="float-right btn btn-primary ml-2">
+                                        <i class="fa fa-arrow-right" style="font-size: 20px;"></i>
+                                    </button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+
             </div>
             <br />
             <br />

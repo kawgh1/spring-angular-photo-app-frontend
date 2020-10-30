@@ -15,10 +15,15 @@
                                     src="{{ userHost }}/{{ post?.userImageId }}.png" alt="" />
                             </div>
                             <div (click)="getUserProfile(post.username)" style="cursor: pointer" class="ml-2">
-                                <div class="h5 m-0">{{ post?.username }}</div>
+                                <div style="color:#18BC9C;cursor:pointer;" class="h5 m-0">{{ post?.username }}</div>
                                 <div class="h7 text-muted">
-                                    {{ post?.postedDate | date: "mediumDate" }}
                                     {{ post?.location }}
+                                    <br>
+                                    {{ post?.postedDate | date: "mediumDate" }} &nbsp;
+                                    <br>
+                                    {{ post?.postedDate | date: "shortTime" }}
+
+
                                 </div>
                             </div>
                         </div>
@@ -44,11 +49,11 @@
                     <a data-toggle="collapse" href="#{{ post.name }}" role="button" aria-expanded="false"
                         aria-controls="collapseComment" class="card-link float-right">{{ post?.commentList?.length }}<i
                             class="fa fa-comment"></i></a>
-                    <h5 style="color:#18BC9C;cursor:pointer;" (click)="getUserProfile(post.username)"
+                    <!-- <h5 style="color:#18BC9C;cursor:pointer;" (click)="getUserProfile(post.username)"
                         class="card-title">
                         {{ post?.username }}
-                    </h5>
-                    <p class="card-text">{{ post?.caption }}</p>
+                    </h5> -->
+
                 </div>
                 <div class="collapse" id="{{ post.name }}">
                     <div *ngFor="let comment of post?.commentList" class="card-body">
@@ -58,9 +63,9 @@
                                     <a class="float-left" (click)="getUserProfile(comment.username)"
                                         style="color:#18BC9C;cursor:pointer;"><strong>{{
                       comment.username }}</strong></a>
-                                    <span class="text-secondary float-right">{{
-                    comment?.postedDate | date: "short"
-                    }}</span>
+                                    <span class="text-secondary float-right">
+                                        {{ comment?.postedDate | date: "short" }}
+                                    </span>
                                 </p>
                                 <div class="clearfix"></div>
                                 <p>{{ comment?.content }}</p>

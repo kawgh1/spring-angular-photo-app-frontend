@@ -19,7 +19,7 @@ I added some mobile formatting, UX improvements and other code fixes.
 - Angular Resolvers (https://codeburst.io/understanding-resolvers-in-angular-736e9db71267)
 - General web UX tips
 
-To view the live site deployment, please visit:
+To view the live site deployment, please visit: https://spring-angular-photoshar-front.herokuapp.com
 
 To view the SpringBoot backend code please visit: https://github.com/kawgh1/spring-angular-photo-app-backend
 
