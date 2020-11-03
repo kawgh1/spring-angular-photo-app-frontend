@@ -53,7 +53,8 @@
                     <!-- comments and likes visible on home page but disabled since home display an array of posts
                             and not the route of a single post to manipulate directly -->
                     <a class="card-link" style="cursor:default;">{{ post?.likes }}<i class="fa fa-gittip"></i></a>
-                    <a class="card-link float-right">{{ post?.commentList?.length }}<i class="fa fa-comment"></i></a>
+                    <a class="card-link float-right" style="cursor:default;">{{ post?.commentList?.length }}<i
+                            class="fa fa-comment"></i></a>
                     <!-- <h5 style="color:#18BC9C;cursor:pointer;" (click)="getUserProfile(post.username)"
                             class="card-title">
                             {{ post?.username }}
