@@ -13,7 +13,7 @@ import { AlertType } from '../../enums/alert-type.enum';
 @Component({
   selector: 'app-profile',
   templateUrl: './profile.component.html',
-  styleUrls: ['./profile.component.css']
+  styleUrls: ['./profile.component.css'],
 })
 export class ProfileComponent implements OnInit, OnDestroy {
   private subscriptions: Subscription[] = [];
@@ -26,6 +26,7 @@ export class ProfileComponent implements OnInit, OnDestroy {
   username: string;
   profilePictureChange: boolean;
   profilePicture: File;
+  currentYear: number = new Date().getFullYear();
 
   constructor(
     private route: ActivatedRoute,
@@ -34,7 +35,7 @@ export class ProfileComponent implements OnInit, OnDestroy {
     private router: Router,
     private loadingService: LoadingService,
     private alertService: AlertService
-  ) { }
+  ) {}
 
   ngOnInit() {
     this.loadingService.isLoading.next(true);
@@ -53,7 +54,7 @@ export class ProfileComponent implements OnInit, OnDestroy {
           this.user = response;
           this.getPostsByUsername(this.user.username);
         },
-        error => {
+        (error) => {
           console.log(error);
           this.user = null;
         }
@@ -67,7 +68,7 @@ export class ProfileComponent implements OnInit, OnDestroy {
         (response: Post[]) => {
           this.user.post = response;
         },
-        error => {
+        (error) => {
           console.log(error);
           this.user.post = null;
         }
@@ -86,7 +87,7 @@ export class ProfileComponent implements OnInit, OnDestroy {
     this.loadingService.isLoading.next(true);
     this.subscriptions.push(
       this.accountService.updateUser(updatedUser).subscribe(
-        response => {
+        (response) => {
           console.log(response);
           if (this.profilePictureChange) {
             this.accountService.uploadUserProfilePicture(this.profilePicture);
@@ -94,15 +95,15 @@ export class ProfileComponent implements OnInit, OnDestroy {
           this.loadingService.isLoading.next(false);
           this.alertService.showAlert(
             'Profile updated successfully.',
-            AlertType.SUCCESS
+            AlertType.INFO
           );
         },
-        error => {
+        (error) => {
           console.log(error);
           this.loadingService.isLoading.next(false);
           this.alertService.showAlert(
-            'Profile update failed. Please try again..',
-            AlertType.DANGER
+            'Profile update failed. Please try again.',
+            AlertType.WARNING
           );
         }
       )
@@ -118,7 +119,7 @@ export class ProfileComponent implements OnInit, OnDestroy {
     this.loadingService.isLoading.next(true);
     this.subscriptions.push(
       this.accountService.changePassword(passwordChange).subscribe(
-        response => {
+        (response) => {
           console.log(response);
           this.loadingService.isLoading.next(false);
           this.alertService.showAlert(
@@ -126,7 +127,7 @@ export class ProfileComponent implements OnInit, OnDestroy {
             AlertType.SUCCESS
           );
         },
-        error => {
+        (error) => {
           console.log(error);
           this.loadingService.isLoading.next(false);
           const errorMsg: string = error.error;
@@ -161,7 +162,6 @@ export class ProfileComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy() {
-    this.subscriptions.forEach(sub => sub.unsubscribe());
+    this.subscriptions.forEach((sub) => sub.unsubscribe());
   }
-
 }

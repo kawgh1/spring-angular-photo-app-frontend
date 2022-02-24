@@ -10,7 +10,7 @@ import { User } from '../../models/user';
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
-  styleUrls: ['./login.component.css']
+  styleUrls: ['./login.component.css'],
 })
 export class LoginComponent implements OnInit, OnDestroy {
   private subscriptions: Subscription[] = [];
@@ -20,11 +20,11 @@ export class LoginComponent implements OnInit, OnDestroy {
     private accountService: AccountService,
     private loadingService: LoadingService,
     private alertService: AlertService
-  ) { }
+  ) {}
 
   ngOnInit() {
     // if user is already logged in and goes to the login page,
-    // we don't want them to see the login page, it's confusing 
+    // we don't want them to see the login page, it's confusing
 
     // when user accesses login page check if user is logged in
     if (this.accountService.isLoggedIn()) {
@@ -46,7 +46,7 @@ export class LoginComponent implements OnInit, OnDestroy {
     // console.log(user);
     this.subscriptions.push(
       this.accountService.login(user).subscribe(
-        response => {
+        (response) => {
           const token: string = response.headers.get('Authorization');
           this.accountService.saveToken(token);
           if (this.accountService.redirectUrl) {
@@ -56,11 +56,11 @@ export class LoginComponent implements OnInit, OnDestroy {
           }
           this.loadingService.isLoading.next(false);
         },
-        error => {
+        (error) => {
           console.log(error);
           this.loadingService.isLoading.next(false);
           this.alertService.showAlert(
-            'Username or password incorrect. Please try again.',
+            'Username or password incorrect.  Please try again.',
             AlertType.DANGER
           );
         }
@@ -69,6 +69,6 @@ export class LoginComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy() {
-    this.subscriptions.forEach(sub => sub.unsubscribe);
+    this.subscriptions.forEach((sub) => sub.unsubscribe);
   }
 }

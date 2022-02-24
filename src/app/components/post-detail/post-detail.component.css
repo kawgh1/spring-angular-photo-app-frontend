@@ -1,14 +1,41 @@
-.blackColor{
-    color: #000000;
-  }
-  
-  .blueColor{
-    color: #18BC9C;
-  
-  }
-  
-  .card-text {
-    font-size: 1.25rem;
-    font-weight: bold;
-    font-family: 'Courier New', Courier, monospace;
-  }
+.blackColor {
+  color: #333;
+}
+
+.blueColor {
+  color: #bc5a18;
+}
+.footer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  bottom: 0;
+  height: 50px;
+}
+
+.card-text {
+  font-size: 1.25rem;
+  font-weight: bold;
+  font-family: "Courier New", Courier, monospace;
+  color: maroon;
+}
+
+/* profile pic */
+.ui-w-100 {
+  width: 100px !important;
+  height: 100px;
+  border: 1px solid silver;
+  margin-bottom: 10px;
+}
+
+.card-link {
+  color: darkorange;
+}
+
+.card-body {
+  color: rgb(85, 7, 7);
+}
+
+.container {
+  height: 100%;
+}

@@ -1,12 +1,124 @@
 .navbar-nav {
-    flex-direction: row;}
-  
-    .bt{
-        width: 100%;
-    }
-    .active {
-     border-bottom: 3px solid white;
-    }
-  
+  flex-direction: row;
+}
 
-    
+.navbar {
+  box-shadow: rgba(0, 0, 0, 0.18) 0px 3px 15px;
+}
+
+.nav-link:hover,
+.nav-link:focus,
+.nav-link:active {
+  color: #999;
+}
+
+.bt {
+  width: 100%;
+}
+.active {
+  border-bottom: 3px solid white;
+}
+
+li > a > i {
+  font-size: 23px;
+}
+
+/* 
+other good color scheme green
+rgb(6, 73, 20),
+    rgb(0, 128, 58),
+    rgb(34, 178, 111),
+    rgb(0, 255, 13),
+    rgb(150, 255, 0),
+*/
+
+.title {
+  font-size: 23px;
+  color: maroon;
+  background: -webkit-linear-gradient(
+    left,
+    rgb(73, 6, 6),
+    maroon,
+    firebrick,
+    orange,
+    gold
+  );
+  background: -o-linear-gradient(
+    right,
+    rgb(73, 6, 6),
+    maroon,
+    firebrick,
+    orange,
+    gold
+  );
+  background: -moz-linear-gradient(
+    right,
+    rgb(73, 6, 6),
+    maroon,
+    firebrick,
+    orange,
+    gold
+  );
+  background: linear-gradient(
+    to right,
+    rgb(73, 6, 6),
+    maroon,
+    firebrick,
+    orange,
+    gold
+  );
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.logo {
+  color: rgb(73, 6, 6);
+}
+.not-mag {
+  margin-top: 2px;
+}
+
+@media screen and (max-width: 430px) {
+  li > a > i {
+    font-size: 18px;
+    font-weight: 500;
+  }
+  .not-mag {
+    margin-top: 0px;
+  }
+  .nav-item {
+    padding: 0px 10px;
+  }
+  .title {
+    font-size: 18px;
+    margin-bottom: 1px;
+  }
+
+  .logo {
+    height: 18px;
+    width: 18px;
+    margin-bottom: 2px;
+  }
+}
+
+@media screen and (max-width: 370px) {
+  .title {
+    display: none;
+  }
+  .logo {
+    height: 25px;
+    width: 25px;
+    margin-bottom: 5px;
+  }
+}
+
+@media screen and (max-width: 300px) {
+  .title {
+    display: inline;
+  }
+  .logo {
+    height: 25px;
+    width: 25px;
+    margin-bottom: 5px;
+  }
+}

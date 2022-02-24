@@ -13,7 +13,7 @@ import { Comment } from '../../models/comment';
 @Component({
   selector: 'app-post-detail',
   templateUrl: './post-detail.component.html',
-  styleUrls: ['./post-detail.component.css']
+  styleUrls: ['./post-detail.component.css'],
 })
 export class PostDetailComponent implements OnInit {
   private subscriptions: Subscription[] = [];
@@ -30,6 +30,7 @@ export class PostDetailComponent implements OnInit {
   isUser: boolean;
   postId: number;
   color: string;
+  currentYear: number = new Date().getFullYear();
 
   constructor(
     public accountService: AccountService,
@@ -38,7 +39,7 @@ export class PostDetailComponent implements OnInit {
     private route: ActivatedRoute,
     private loadingService: LoadingService,
     private alertService: AlertService
-  ) { }
+  ) {}
 
   ngOnInit() {
     this.loadingService.isLoading.next(true);
@@ -71,7 +72,7 @@ export class PostDetailComponent implements OnInit {
           this.user = response;
           console.log(this.user);
         },
-        error => {
+        (error) => {
           console.log(error);
         }
       )
@@ -86,19 +87,19 @@ export class PostDetailComponent implements OnInit {
   onDelete(id: number) {
     this.subscriptions.push(
       this.postService.delete(id).subscribe(
-        response => {
+        (response) => {
           console.log('The deleted post: ', response);
           this.alertService.showAlert(
             'Post was deleted successfully.',
-            AlertType.SUCCESS
+            AlertType.INFO
           );
           this.router.navigateByUrl('/home');
         },
-        error => {
+        (error) => {
           console.log(error);
           this.alertService.showAlert(
             'Post was not deleted. Please try again.',
-            AlertType.DANGER
+            AlertType.WARNING
           );
         }
       )
@@ -116,11 +117,11 @@ export class PostDetailComponent implements OnInit {
     post.commentList.push(newComment);
     this.subscriptions.push(
       this.postService.saveComment(newComment).subscribe(
-        response => {
+        (response) => {
           console.log(response);
           console.log('Comment has been saved to the database...');
         },
-        error => {
+        (error) => {
           this.loadingService.isLoading.next(false);
           console.log(error);
         }
@@ -129,25 +130,27 @@ export class PostDetailComponent implements OnInit {
   }
 
   displayLike(user: User) {
-    const result: Post = user.likedPost.find(post => post.id === this.post.id);
+    const result: Post = user.likedPost.find(
+      (post) => post.id === this.post.id
+    );
     if (result) {
       this.like = 'Unlike';
-      this.color = '#18BC9C';
+      this.color = '#bc5a18';
       console.log('testing');
     } else {
       this.like = 'Like';
-      this.color = '#000000';
+      this.color = '#222';
     }
   }
 
   likePost(post, user) {
-    if (this.color === '#000000') {
-      this.color = '#18BC9C';
+    if (this.color === '#222') {
+      this.color = '#bc5a18';
       this.like = 'Unlike';
       this.doLike(post, user);
       post.likes += 1;
     } else {
-      this.color = '#000000';
+      this.color = '#222';
       this.like = 'Like';
       this.doUnlike(post, user);
       if (user.likedPosts != null) {
@@ -166,10 +169,10 @@ export class PostDetailComponent implements OnInit {
   doLike(post, user) {
     this.subscriptions.push(
       this.postService.like(post.id, user.username).subscribe(
-        response => {
+        (response) => {
           console.log(response);
         },
-        error => {
+        (error) => {
           console.log(error);
         }
       )
@@ -179,14 +182,13 @@ export class PostDetailComponent implements OnInit {
   doUnlike(post, user) {
     this.subscriptions.push(
       this.postService.unLike(post.id, user.username).subscribe(
-        response => {
+        (response) => {
           console.log(response);
         },
-        error => {
+        (error) => {
           console.log(error);
         }
       )
     );
   }
-
 }

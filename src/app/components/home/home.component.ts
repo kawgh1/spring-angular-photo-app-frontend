@@ -14,7 +14,7 @@ import { Comment } from '../../models/comment';
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
-  styleUrls: ['./home.component.css']
+  styleUrls: ['./home.component.css'],
 })
 export class HomeComponent implements OnInit, OnDestroy {
   private subscriptions: Subscription[] = [];
@@ -31,6 +31,7 @@ export class HomeComponent implements OnInit, OnDestroy {
   isUser: boolean;
   postId: number;
   color: string;
+  currentYear: number = new Date().getFullYear();
 
   constructor(
     public accountService: AccountService,
@@ -38,7 +39,7 @@ export class HomeComponent implements OnInit, OnDestroy {
     private router: Router,
     private loadingService: LoadingService,
     private alertService: AlertService
-  ) { }
+  ) {}
 
   ngOnInit() {
     //  don't initialize the home page if the user isn't logged in
@@ -48,12 +49,9 @@ export class HomeComponent implements OnInit, OnDestroy {
       this.getUserInfo(this.accountService.loggedInUsername);
       this.getPosts();
 
-
-
       this.host = this.postService.host;
       this.userHost = this.postService.userHost;
       this.postHost = this.postService.postHost;
-
 
       this.loadingService.isLoading.next(false);
     } else {
@@ -68,14 +66,15 @@ export class HomeComponent implements OnInit, OnDestroy {
           this.displayLike(response);
           this.user = response;
         },
-        error => {
+        (error) => {
           console.log(error);
           this.user = null;
           this.logOut();
           // logOut() already routes to /login
           // this.router.navigateByUrl('/login');
         }
-      ));
+      )
+    );
   }
 
   logOut(): void {
@@ -93,27 +92,26 @@ export class HomeComponent implements OnInit, OnDestroy {
   }
 
   getPosts(): void {
-    this.subscriptions.push(this.accountService.getPosts().subscribe(
-      (response: Post[]) => {
-        this.posts = response;
-        console.log(this.posts);
+    this.subscriptions.push(
+      this.accountService.getPosts().subscribe(
+        (response: Post[]) => {
+          this.posts = response;
+          console.log(this.posts);
 
-
-
-        this.loadingService.isLoading.next(false);
-      },
-      error => {
-        console.log(error);
-        this.loadingService.isLoading.next(false);
-      }
-    ));
+          this.loadingService.isLoading.next(false);
+        },
+        (error) => {
+          console.log(error);
+          this.loadingService.isLoading.next(false);
+        }
+      )
+    );
   }
-
 
   onDelete(id: number): void {
     this.subscriptions.push(
       this.postService.delete(id).subscribe(
-        response => {
+        (response) => {
           console.log('The deleted post: ', response);
           this.alertService.showAlert(
             'Post was deleted successfully.',
@@ -121,15 +119,16 @@ export class HomeComponent implements OnInit, OnDestroy {
           );
           this.getPosts();
         },
-        error => {
+        (error) => {
           console.log(error);
           this.alertService.showAlert(
             'Post was not deleted. Please try again.',
-            AlertType.DANGER
+            AlertType.WARNING
           );
           this.getPosts();
         }
-      ));
+      )
+    );
   }
 
   seeOnePost(postId): void {
@@ -139,21 +138,20 @@ export class HomeComponent implements OnInit, OnDestroy {
 
   // comments and likes
   displayLike(user: User) {
-    const result: Post = user.likedPost.find(post => post.id === this.post.id);
+    const result: Post = user.likedPost.find(
+      (post) => post.id === this.post.id
+    );
     if (result) {
       this.like = 'Unlike';
-      this.color = '#18BC9C';
+      this.color = '#bc5a18';
       console.log('testing');
     } else {
       this.like = 'Like';
-      this.color = '#000000';
+      this.color = '#222';
     }
   }
 
-
-
   ngOnDestroy() {
-    this.subscriptions.forEach(sub => sub.unsubscribe());
+    this.subscriptions.forEach((sub) => sub.unsubscribe());
   }
-
 }

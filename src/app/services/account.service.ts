@@ -1,7 +1,10 @@
-
 import { Injectable } from '@angular/core';
 // HttpClient is just the angular client used to make HTTP calls, GET, POST, etc.
-import { HttpClient, HttpErrorResponse, HttpResponse } from '@angular/common/http';
+import {
+  HttpClient,
+  HttpErrorResponse,
+  HttpResponse,
+} from '@angular/common/http';
 // When a GET/POST request is sent to the server, an Observable is returned
 import { Observable } from 'rxjs';
 // used for authentication
@@ -14,20 +17,13 @@ import { ServerConstant } from '../constants/server-constant';
 // import GoogleMapsAPIKey from environment.ts
 import { APIKeys } from '../../environments/environment.prod';
 
-
-
 // the account service class will act as the middle man between the front end
-// and backend API 
-
-
-
-
+// and backend API
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class AccountService {
-
   constant: ServerConstant = new ServerConstant();
   public host: string = this.constant.host;
   public token: string;
@@ -41,16 +37,21 @@ export class AccountService {
   // public googleMapsAPIKey = '${GoogleMapsAPIKey}';
   public googleMapsAPIKey = APIKeys.GoogleMapsAPIKey;
 
-  public googleMapsAPIUrl = 'https://maps.googleapis.com/maps/api/geocode/json?latlng=';
+  public googleMapsAPIUrl =
+    'https://maps.googleapis.com/maps/api/geocode/json?latlng=';
   public jwtHelper = new JwtHelperService();
 
   // first grab an instance of the HttpClient and use it to make calls to the API
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient) {}
 
   // login takes in a user and returns an observable http response or error
   login(user: User): Observable<HttpErrorResponse | HttpResponse<any>> {
     // send the user as a JSON object and observe the response so we can get the header and token from the response
-    return this.http.post<HttpErrorResponse | HttpResponse<any>>(`${this.host}/user/login`, user, { observe: 'response' });
+    return this.http.post<HttpErrorResponse | HttpResponse<any>>(
+      `${this.host}/user/login`,
+      user,
+      { observe: 'response' }
+    );
   }
 
   // register takes a user and returns an observable of user or httperror
@@ -62,7 +63,7 @@ export class AccountService {
   resetPassword(email: string) {
     return this.http.get(`${this.host}/user/resetPassword/${email}`, {
       // returns text only, not an observable
-      responseType: 'text'
+      responseType: 'text',
     });
   }
 
@@ -120,12 +121,17 @@ export class AccountService {
   }
 
   searchUsers(username: string): Observable<User[]> {
-    return this.http.get<User[]>(`${this.host}/user/findByUsername/${username}`);
+    return this.http.get<User[]>(
+      `${this.host}/user/findByUsername/${username}`
+    );
   }
 
   // call to Google Maps API send long + lat as string and get back location JSON object with info
   getLocation(latitude: string, longitude: string): Observable<any> {
-    return this.http.get<any>(`${this.googleMapsAPIUrl}` + `${latitude},${longitude}&key=${this.googleMapsAPIKey}`);
+    return this.http.get<any>(
+      `${this.googleMapsAPIUrl}` +
+        `${latitude},${longitude}&key=${this.googleMapsAPIKey}`
+    );
   }
 
   updateUser(updateUser: User): Observable<User> {
@@ -133,7 +139,9 @@ export class AccountService {
   }
 
   changePassword(changePassword: PasswordChange) {
-    return this.http.post(`${this.host}/user/changePassword`, changePassword, { responseType: 'text' });
+    return this.http.post(`${this.host}/user/changePassword`, changePassword, {
+      responseType: 'text',
+    });
   }
 
   uploadUserProfilePicture(profilePicture: File) {
@@ -141,17 +149,19 @@ export class AccountService {
 
     const fd = new FormData();
     fd.append('image', profilePicture);
-    return this.http
-      // then send the form data with image appended to the server
-      .post(`${this.host}/user/photo/upload`, fd, { responseType: 'text' })
-      .subscribe(
-        (response: any) => {
-          console.log(response);
-          console.log('User profile picture was uploaded. ' + response);
-        },
-        error => {
-          console.log(error);
-        }
-      );
+    return (
+      this.http
+        // then send the form data with image appended to the server
+        .post(`${this.host}/user/photo/upload`, fd, { responseType: 'text' })
+        .subscribe(
+          (response: any) => {
+            console.log(response);
+            console.log('User profile picture was uploaded. ' + response);
+          },
+          (error) => {
+            console.log('Error uploading profile picture', error);
+          }
+        )
+    );
   }
 }

@@ -9,10 +9,9 @@ import { AlertService } from '../../services/alert.service';
 @Component({
   selector: 'app-reset-password',
   templateUrl: './reset-password.component.html',
-  styleUrls: ['./reset-password.component.css']
+  styleUrls: ['./reset-password.component.css'],
 })
 export class ResetPasswordComponent implements OnInit, OnDestroy {
-
   private subscriptions: Subscription[] = [];
 
   constructor(
@@ -20,7 +19,7 @@ export class ResetPasswordComponent implements OnInit, OnDestroy {
     private loadingService: LoadingService,
     private router: Router,
     private alertService: AlertService
-  ) { }
+  ) {}
 
   ngOnInit() {
     if (this.accountService.isLoggedIn()) {
@@ -40,12 +39,12 @@ export class ResetPasswordComponent implements OnInit, OnDestroy {
     const email: string = form.email;
     this.subscriptions.push(
       this.accountService.resetPassword(email).subscribe(
-        response => {
+        (response) => {
           console.log(response);
           this.loadingService.isLoading.next(false);
           this.alertService.showAlert(
             'A new password has been sent to your email.',
-            AlertType.SUCCESS
+            AlertType.INFO
           );
         },
         (error: HttpErrorResponse) => {
@@ -54,13 +53,13 @@ export class ResetPasswordComponent implements OnInit, OnDestroy {
           if (errorMsg === 'emailNotFound') {
             this.alertService.showAlert(
               'There is no account for this email. Please verify the email.',
-              AlertType.DANGER
+              AlertType.WARNING
             );
           }
           if (errorMsg !== 'emailNotFound') {
             this.alertService.showAlert(
               'Some error occurred. Please try again.',
-              AlertType.DANGER
+              AlertType.WARNING
             );
           }
           this.loadingService.isLoading.next(false);
@@ -70,7 +69,6 @@ export class ResetPasswordComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy() {
-    this.subscriptions.forEach(sub => sub.unsubscribe());
+    this.subscriptions.forEach((sub) => sub.unsubscribe());
   }
-
 }

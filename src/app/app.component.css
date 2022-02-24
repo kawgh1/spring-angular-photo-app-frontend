@@ -1,6 +1,18 @@
 .alert {
-    position: absolute;
-    top: 75px;
-    width: 100%;
-  }
-  
+  position: fixed;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  top: 75px;
+  width: 100%;
+  z-index: 999;
+}
+
+.close {
+  margin-left: 10px;
+}
+
+.close:hover,
+.close:focus {
+  cursor: pointer;
+}

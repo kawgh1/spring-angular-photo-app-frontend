@@ -7,7 +7,7 @@ import { LoadingService } from './services/loading.service';
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css']
+  styleUrls: ['./app.component.css'],
 })
 export class AppComponent implements OnInit, OnDestroy {
   title = 'vineyard-frontend';
@@ -19,8 +19,10 @@ export class AppComponent implements OnInit, OnDestroy {
   // need to bring in loadingService and alertService into this class
   // so we use a constructor to do dependency injection for loadingService and alertService
 
-  constructor(private loadingService: LoadingService, private alertService: AlertService) {
-
+  constructor(
+    private loadingService: LoadingService,
+    private alertService: AlertService
+  ) {
     this.loading = false;
   }
   // when this component is initialized ngOnInit() we have to listen to the Observables contained
@@ -33,37 +35,36 @@ export class AppComponent implements OnInit, OnDestroy {
   // their status in real time
   ngOnInit() {
     this.subscriptions.push(
-      this.loadingService.isLoading.subscribe(isLoading => {
+      this.loadingService.isLoading.subscribe((isLoading) => {
         // isLoading true or false
         this.loading = isLoading;
       })
     );
 
     this.subscriptions.push(
-      this.alertService.alerts.subscribe(alert => {
-
+      this.alertService.alerts.subscribe((alert) => {
         this.alerts.push(alert);
         // when we subscribe to the alert service its going to display the alert and we want
         // that to close automatically if user doesn't close alert
-        this.closeAlert(5);
+        this.closeAlert(9);
       })
     );
-
   }
 
   // close alert automatically after X seconds if user doesn't close alert
   // private because its only being used in this class
   public closeAlert(second: number): void {
     setTimeout(() => {
-
-      let element: HTMLElement = document.getElementById('dismissAlert') as HTMLElement;
+      let element: HTMLElement = document.getElementById(
+        'dismissAlert'
+      ) as HTMLElement;
       element.click();
-    }, second * 1000)
+    }, second * 1000);
   }
 
-  // important to unsubscribe - remove from our Subscriptions array[]- 
+  // important to unsubscribe - remove from our Subscriptions array[]-
   // from services when the component is destroyed to avoid memory leaks
   ngOnDestroy() {
-    this.subscriptions.forEach(sub => sub.unsubscribe);
+    this.subscriptions.forEach((sub) => sub.unsubscribe);
   }
 }

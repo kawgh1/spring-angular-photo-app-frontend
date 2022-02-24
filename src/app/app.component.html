@@ -1,10 +1,19 @@
 <!-- added, default is angular home page, -->
-<ngx-loading [show]="loading" [config]="{ fullScreenBackdrop: true }"></ngx-loading>
+<ngx-loading
+  [show]="loading"
+  [config]="{ fullScreenBackdrop: true }"
+></ngx-loading>
 
 <div *ngFor="let alert of alerts" class="text-center">
   <div class="alert alert-{{ alert.type }}" role="alert">
-    <span class="close" data-dismiss="alert" id="dismissAlert"></span>
     {{ alert.text }}
+    <span
+      class="close"
+      data-dismiss="alert"
+      id="dismissAlert"
+      onClick="{{ closeAlert }}"
+      >✕</span
+    >
   </div>
 </div>
 <router-outlet></router-outlet>

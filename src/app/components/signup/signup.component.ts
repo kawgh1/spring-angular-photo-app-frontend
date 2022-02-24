@@ -10,10 +10,9 @@ import { AlertService } from '../../services/alert.service';
 @Component({
   selector: 'app-signup',
   templateUrl: './signup.component.html',
-  styleUrls: ['./signup.component.css']
+  styleUrls: ['./signup.component.css'],
 })
 export class SignupComponent implements OnInit, OnDestroy {
-
   private subscriptions: Subscription[] = [];
 
   constructor(
@@ -21,7 +20,7 @@ export class SignupComponent implements OnInit, OnDestroy {
     private router: Router,
     private loadingService: LoadingService,
     private alertService: AlertService
-  ) { }
+  ) {}
 
   ngOnInit() {
     if (this.accountService.isLoggedIn()) {
@@ -40,17 +39,14 @@ export class SignupComponent implements OnInit, OnDestroy {
     console.log(user);
     this.subscriptions.push(
       this.accountService.register(user).subscribe(
-        response => {
+        (response) => {
           this.loadingService.isLoading.next(false);
 
-          setTimeout(() => {
-
-            this.alertService.showAlert(
-              'You have registered successfully. Please check your email for account details.',
-              AlertType.SUCCESS
-            );
-            console.log(response);
-          }, 8000);
+          this.alertService.showAlert(
+            'You have registered successfully. Please check your email for account details.',
+            AlertType.SUCCESS
+          );
+          console.log(response);
         },
         (error: HttpErrorResponse) => {
           console.log(error);
@@ -59,18 +55,17 @@ export class SignupComponent implements OnInit, OnDestroy {
           if (errorMsg === 'usernameExist') {
             this.alertService.showAlert(
               'This username already exists. Please try with a different username',
-              AlertType.DANGER
+              AlertType.WARNING
             );
           } else if (errorMsg === 'emailExist') {
             this.alertService.showAlert(
               'This email address already exists. Please try with a different email',
-              AlertType.DANGER
+              AlertType.WARNING
             );
-
           } else {
             this.alertService.showAlert(
               'Something went wrong. Please try again.',
-              AlertType.DANGER
+              AlertType.WARNING
             );
           }
         }
@@ -79,7 +74,6 @@ export class SignupComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy() {
-    this.subscriptions.forEach(sub => sub.unsubscribe());
+    this.subscriptions.forEach((sub) => sub.unsubscribe());
   }
-
 }
